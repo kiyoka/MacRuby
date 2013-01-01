@@ -31,8 +31,10 @@
  * The __RBDummy__ class is only to have something Objective-C in the 
  * executable bits, for the compiler.
  */
-#include <Foundation/Foundation.h>
-@interface __RBDummy__ : NSObject
+
+//#include <Foundation/Foundation.h>
+
+@interface __RBDummy__ // : NSObject
 @end
 @implementation __RBDummy__
 @end
