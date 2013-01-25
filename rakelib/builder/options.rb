@@ -152,7 +152,8 @@ class BuilderConfig
     @CXX = (opt.delete(:CXX) || CXX)
     @objs = (opt.delete(:objs) || OBJS)
     @archs = (opt.delete(:archs) || ARCHS)
-    sdk = opt.delete(:sdk)
+#    sdk = opt.delete(:sdk)
+    sdk = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.6.sdk'
     has_libauto = sdk ? File.exist?("#{sdk}/usr/lib/libauto.dylib") : true
     archflags = archs.map { |x| "-arch #{x}" }.join(' ')
     @cflags = "-std=c99 -I. -I./include -pipe -fno-common -fexceptions -fblocks -fwrapv -g -O#{OPTZ_LEVEL} -Wall -Wno-deprecated-declarations -Werror #{archflags} #{EXTRA_CFLAGS}"

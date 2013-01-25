@@ -21,6 +21,10 @@
 #include <libkern/OSAtomic.h>
 #include <asl.h>
 
+#undef MAC_OS_X_VERSION_MAX_ALLOWED
+#include <AvailabilityInternal.h>
+
+
 static SEL selClose;
 
 typedef struct {

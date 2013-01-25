@@ -39,6 +39,9 @@
 
 #include <mach/mach.h>
 
+#undef MAC_OS_X_VERSION_MAX_ALLOWED
+#include <AvailabilityInternal.h>
+
 auto_zone_t *__auto_zone = NULL;
 
 static VALUE nomem_error;
@@ -1006,6 +1009,7 @@ count_objects(VALUE os, SEL sel, int argc, VALUE *argv)
  *
  */
 
+
 #define gc_count rb_f_notimplement
 
 /*
@@ -1016,14 +1020,17 @@ count_objects(VALUE os, SEL sel, int argc, VALUE *argv)
 
 static bool gc_disabled = false;
 
+
 void
 Init_PreGC(void)
 {
     auto_collection_control_t *control;
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+    //#warning "10.7"
     __auto_zone = objc_collectableZone();
 #else
+    //#warning "10.6"
     __auto_zone = auto_zone();
 #endif
     
