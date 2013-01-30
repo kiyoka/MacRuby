@@ -109,6 +109,7 @@ static ID low_priority_id;
 static ID default_priority_id;
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+#error "10.7"
 static VALUE qBackgroundPriority;
 static ID background_priority_id;
 #endif
@@ -254,6 +255,7 @@ rb_queue_get_concurrent(VALUE klass, SEL sel, int argc, VALUE *argv)
     if (!NIL_P(priority)) {
 	
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+#error "10.7"
 	if (TYPE(priority) == T_STRING) {
 	    return rb_queue_from_dispatch(
 		dispatch_queue_create(RSTRING_PTR(priority), DISPATCH_QUEUE_CONCURRENT), 1);
@@ -270,6 +272,7 @@ rb_queue_get_concurrent(VALUE klass, SEL sel, int argc, VALUE *argv)
 	    return qLowPriority;
 	}
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+#error "10.7"
 	else if (id == background_priority_id) {
 	    return qBackgroundPriority;
 	}
@@ -521,7 +524,7 @@ rb_queue_dispatch_sync(VALUE self, SEL sel)
  */
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
-
+#error "10.7"
 static VALUE
 rb_queue_dispatch_barrier_async(VALUE self, SEL sel)
 {
@@ -554,7 +557,7 @@ rb_queue_dispatch_barrier_async(VALUE self, SEL sel)
  */
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
-
+#error "10.7"
 static VALUE
 rb_queue_dispatch_barrier_sync(VALUE self, SEL sel)
 {
@@ -1297,6 +1300,7 @@ Init_Dispatch(void)
     low_priority_id = rb_intern("low");
     default_priority_id = rb_intern("default");
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+#error "10.7"
     background_priority_id = rb_intern("background");
 #endif
 
@@ -1374,6 +1378,7 @@ Init_Dispatch(void)
     rb_objc_define_method(cQueue, "to_s", rb_queue_label, 0);
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+#error "10.7"
     rb_objc_define_method(cQueue, "barrier_async", rb_queue_dispatch_barrier_async, 0);
     rb_objc_define_method(cQueue, "barrier_sync", rb_queue_dispatch_barrier_sync, 0);
 #endif
@@ -1389,6 +1394,7 @@ Init_Dispatch(void)
     qLowPriority = rb_queue_from_dispatch(dispatch_get_global_queue(
 		DISPATCH_QUEUE_PRIORITY_LOW, 0), true);
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
+#error "10.7"
     qBackgroundPriority = rb_queue_from_dispatch(dispatch_get_global_queue(
 		DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), true);
 #endif

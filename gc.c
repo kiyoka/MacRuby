@@ -1027,10 +1027,9 @@ Init_PreGC(void)
     auto_collection_control_t *control;
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 1070
-    //#warning "10.7"
+#error "10.7"
     __auto_zone = objc_collectableZone();
 #else
-    //#warning "10.6"
     __auto_zone = auto_zone();
 #endif
     
@@ -1056,6 +1055,8 @@ Init_PostGC(void)
     if (!gc_disabled) {
 #if MAC_OS_X_VERSION_MAX_ALLOWED < 1070
 	objc_startCollectorThread();
+#else
+#error "10.7"
 #endif
     }
 }
